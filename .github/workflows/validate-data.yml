@@ -1,0 +1,47 @@
+name: Validate data
+
+on:
+  pull_request:
+    paths:
+      - "data/**"
+      - ".github/workflows/validate-data.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/**"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install validator
+        run: pip install "jsonschema[format]==4.*"
+      - name: Validate data/*.json against data/card.schema.json
+        run: |
+          python - <<'PY'
+          import glob, json, sys
+          from jsonschema import Draft202012Validator, FormatChecker
+          schema = json.load(open("data/card.schema.json"))
+          Draft202012Validator.check_schema(schema)
+          v = Draft202012Validator(schema, format_checker=FormatChecker())
+          bad = 0
+          for path in sorted(glob.glob("data/*.json")):
+              if path.endswith(".schema.json"):
+                  continue
+              try:
+                  doc = json.load(open(path))
+              except json.JSONDecodeError as e:
+                  print(f"::error file={path}::invalid JSON: {e}"); bad += 1; continue
+              for err in v.iter_errors(doc):
+                  loc = "/".join(map(str, err.path)) or "(root)"
+                  print(f"::error file={path}::{loc}: {err.message}"); bad += 1
+          print("all data files valid" if not bad else f"{bad} problem(s)")
+          sys.exit(1 if bad else 0)
+          PY

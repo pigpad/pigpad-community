@@ -1,0 +1,50 @@
+name: Data point
+description: Share what a purchase actually earned and how it posted.
+title: "[Data point] "
+labels: ["data-point", "data"]
+body:
+  - type: markdown
+    attributes:
+      value: Data points help everyone learn how purchases really code and earn. Share only what you're comfortable making public.
+  - type: input
+    id: card
+    attributes: { label: "Card", placeholder: "Issuer + card name" }
+    validations: { required: true }
+  - type: input
+    id: merchant
+    attributes: { label: "Store / merchant", placeholder: "Merchant name, online or in-store" }
+    validations: { required: true }
+  - type: input
+    id: date
+    attributes: { label: "Purchase date", placeholder: "YYYY-MM-DD" }
+    validations: { required: true }
+  - type: input
+    id: amount
+    attributes: { label: "Amount (optional)" }
+  - type: input
+    id: method
+    attributes: { label: "Payment method / wallet", placeholder: "Physical card, tap, Apple Pay, Google Pay, PayPal, online…" }
+  - type: input
+    id: expected
+    attributes: { label: "Expected earn", placeholder: "e.g. 5%" }
+    validations: { required: true }
+  - type: input
+    id: actual
+    attributes: { label: "Actual earn", placeholder: "e.g. 1%" }
+    validations: { required: true }
+  - type: input
+    id: mcc
+    attributes: { label: "Posted category / MCC (if known)", placeholder: "e.g. Grocery stores / 5411" }
+  - type: input
+    id: portal
+    attributes: { label: "Portal used (if any)", placeholder: "Name of cashback portal, or none" }
+  - type: textarea
+    id: notes
+    attributes: { label: "Notes" }
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy
+      options:
+      - label: I removed personal info (card/account numbers, names, emails, addresses, order numbers).
+        required: true

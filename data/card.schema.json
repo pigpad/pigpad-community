@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pigpad/pigpad-community/data/card.schema.json",
+  "title": "pigpad card entry",
+  "type": "object",
+  "required": ["issuer", "card_name", "earn_rates"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "description": "Slug, e.g. example-bank-everyday" },
+    "issuer": { "type": "string", "minLength": 1 },
+    "card_name": { "type": "string", "minLength": 1 },
+    "network": { "type": "string", "enum": ["visa", "mastercard", "amex", "discover", "other"] },
+    "reward_unit": { "type": "string", "enum": ["percent", "points", "miles"], "default": "percent" },
+    "base_rate": { "type": "number", "minimum": 0 },
+    "earn_rates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["category", "rate"],
+        "additionalProperties": false,
+        "properties": {
+          "category": { "type": "string", "minLength": 1, "description": "e.g. dining, groceries, gas, travel" },
+          "rate": { "type": "number", "minimum": 0 },
+          "cap": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "amount": { "type": "number", "minimum": 0 },
+              "period": { "type": "string", "enum": ["month", "quarter", "year"] }
+            }
+          },
+          "mcc": { "type": "array", "items": { "type": "string", "pattern": "^[0-9]{4}$" } },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "rotating_categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["period", "categories", "rate"],
+        "additionalProperties": false,
+        "properties": {
+          "period": { "type": "string", "pattern": "^[0-9]{4}-Q[1-4]$", "description": "e.g. 2026-Q4" },
+          "categories": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "rate": { "type": "number", "minimum": 0 },
+          "cap": { "type": "number", "minimum": 0 },
+          "activation_required": { "type": "boolean" }
+        }
+      }
+    },
+    "sources": { "type": "array", "items": { "type": "string", "format": "uri" } },
+    "last_verified": { "type": "string", "format": "date" }
+  }
+}

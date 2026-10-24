@@ -1,0 +1,37 @@
+name: Wrong rate
+description: A card, offer or portal earned something different from what pigpad showed.
+title: "[Wrong rate] "
+labels: ["wrong-rate", "data"]
+body:
+  - type: input
+    id: card
+    attributes: { label: "Card or program", placeholder: "Issuer + card name" }
+    validations: { required: true }
+  - type: input
+    id: store
+    attributes: { label: "Store or category", placeholder: "e.g. Example Store / groceries" }
+    validations: { required: true }
+  - type: input
+    id: shown
+    attributes: { label: "What pigpad showed", placeholder: "e.g. 3%" }
+    validations: { required: true }
+  - type: input
+    id: correct
+    attributes: { label: "What it should be", placeholder: "e.g. 5% (through Dec 31)" }
+    validations: { required: true }
+  - type: input
+    id: source
+    attributes: { label: "Public source link", description: Issuer page, terms or announcement. }
+  - type: input
+    id: code
+    attributes: { label: "Debug-log code (optional)", placeholder: "PIG-XXXX" }
+  - type: textarea
+    id: notes
+    attributes: { label: "Notes" }
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy
+      options:
+      - label: I removed personal info (card/account numbers, names, emails, addresses, order numbers).
+        required: true

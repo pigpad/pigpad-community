@@ -1,0 +1,37 @@
+name: Missing card
+description: Tell us about a card pigpad doesn't know yet.
+title: "[Missing card] "
+labels: ["missing-card", "data"]
+body:
+  - type: input
+    id: issuer
+    attributes: { label: "Issuer" }
+    validations: { required: true }
+  - type: input
+    id: card
+    attributes: { label: "Card name" }
+    validations: { required: true }
+  - type: dropdown
+    id: network
+    attributes: { label: "Network", options: [Visa, Mastercard, Amex, Discover, Other / not sure] }
+  - type: textarea
+    id: rates
+    attributes: { label: "Earn rates", description: "One per line, e.g. dining 3%, everything else 1%. Include caps and rotating categories if any." }
+    validations: { required: true }
+  - type: input
+    id: source
+    attributes: { label: "Public source link" }
+    validations: { required: true }
+  - type: checkboxes
+    id: pr
+    attributes:
+      label: Contribution
+      options:
+        - label: I'm willing to open a pull request adding this card to data/.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy
+      options:
+      - label: I removed personal info (card/account numbers, names, emails, addresses, order numbers).
+        required: true
