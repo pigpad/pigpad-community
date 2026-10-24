@@ -1,22 +1,27 @@
 # pigpad community
 
-The public home for the pigpad community. Use it to:
+Group-sourced card data and corrections for pigpad.
 
-- **Report a wrong rate**: a card or offer earned something different from what pigpad showed
-- **Report a missing card** that pigpad doesn't know about yet
-- **Report a store that didn't match**: the extension didn't recognize a store, or matched the wrong one
-- **Share a data point**: what a purchase actually earned and how it posted
-- **Suggest a feature idea**
+This is where users share **data points**, what they actually earned with a card at a store (like the long comment threads on deal blogs), and **corrections** when something pigpad shows is wrong. Every submission is an issue, and the issues are the review queue. A light review step happens before anything goes live in pigpad's data.
 
-…and to maintain **open card data**: issuers, card names, earn rates by category and rotating categories, as community-maintained JSON in [`data/`](data/).
+## How it works
 
-## How to contribute
+1. **Submit:** open an issue with one of the forms: Data point, Wrong rate, Missing card or Store didn't match. New submissions get the `needs-review` label automatically.
+2. **Review:** a reviewer checks the submission against public sources and other reports, then marks it:
+   - `confirmed`: merged into [`data/`](data/) or applied in pigpad
+   - `cant-confirm`: couldn't be verified (yet)
+   - `duplicate`: already reported; linked to the original
+3. **Strengthen:** repeated, matching data points strengthen a rate. One report is a hint; several that agree are evidence.
 
-- **Issues:** pick a template at [New issue](../../issues/new/choose).
-- **Data fixes:** edit or add a file in `data/` and open a pull request. A GitHub Action checks every `data/*.json` file against [`data/card.schema.json`](data/card.schema.json).
-- **Questions and open-ended ideas:** use Discussions.
+Feature ideas use their own form and skip review. Questions and open-ended ideas go in Discussions.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for details. Please don't post personal or account information (card numbers, account numbers, emails, addresses, screenshots showing them) anywhere here.
+## Open card data
+
+Community-maintained card data (issuer, card name, earn rates by category, rotating categories) lives in [`data/`](data/) as JSON. A GitHub Action checks every `data/*.json` file against [`data/card.schema.json`](data/card.schema.json) on pull requests.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+**Never post personal information**: no card or account numbers, names, emails, addresses, order numbers or unredacted screenshots.
 
 ## Layout
 
@@ -28,7 +33,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details. Please don't post personal o
 
 ## License
 
-- **Data** (`data/`) and **brand/docs**: [CC BY-SA 4.0](LICENSE)
+- **Data** (`data/`), **brand and docs**: [CC BY-SA 4.0](LICENSE)
 - **Code and workflows** (`.github/`, any scripts): MIT, see [LICENSE-CODE](LICENSE-CODE)
 
 Card and network names are trademarks of their respective owners; listing them here doesn't imply endorsement.

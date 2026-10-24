@@ -1,7 +1,7 @@
 name: Missing card
 description: Tell us about a card pigpad doesn't know yet.
 title: "[Missing card] "
-labels: ["missing-card", "data"]
+labels: ["missing-card", "data", "needs-review"]
 body:
   - type: input
     id: issuer

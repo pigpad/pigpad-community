@@ -1,7 +1,7 @@
 name: Store didn't match
 description: The extension didn't recognize a store, or matched the wrong one.
 title: "[Store match] "
-labels: ["store-match", "bug"]
+labels: ["store-match", "bug", "needs-review"]
 body:
   - type: input
     id: site

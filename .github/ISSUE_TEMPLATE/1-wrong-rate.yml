@@ -1,7 +1,7 @@
 name: Wrong rate
 description: A card, offer or portal earned something different from what pigpad showed.
 title: "[Wrong rate] "
-labels: ["wrong-rate", "data"]
+labels: ["wrong-rate", "data", "needs-review"]
 body:
   - type: input
     id: card

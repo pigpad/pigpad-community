@@ -1,7 +1,7 @@
 name: Data point
 description: Share what a purchase actually earned and how it posted.
 title: "[Data point] "
-labels: ["data-point", "data"]
+labels: ["data-point", "data", "needs-review"]
 body:
   - type: markdown
     attributes:
